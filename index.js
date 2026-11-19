@@ -1,4 +1,5 @@
-import makeWASocket, { useMultiFileAuthState, DisconnectReason } from "@whiskeysockets/baileys";
+const http = require('http');
+http.createServer((req,res)=>{res.end('JARVIS is Online')}).listen(process.env.PORT || 3000);import makeWASocket, { useMultiFileAuthState, DisconnectReason } from "@whiskeysockets/baileys";
 import pino from "pino";
 
 async function start() {
