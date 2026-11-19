@@ -1,5 +1,6 @@
 import http from "http";
 http.createServer((req,res)=>{res.end('JARVIS is Online')}).listen(process.env.PORT || 3000);
+import makeWASocket, { useMultiFileAuthState } from "@whiskeysockets/baileys";
 import pino from "pino";
 
 async function start() {
