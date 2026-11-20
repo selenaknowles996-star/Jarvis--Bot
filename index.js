@@ -6,10 +6,20 @@ import pino from "pino";
 async function start() {
   const { state, saveCreds } = await useMultiFileAuthState("auth");
   const sock = makeWASocket({
-    auth: state,
-    logger: pino({ level: "silent" }),
-    printQRInTerminal: true
-  });
+  auth: state,
+  logger: pino({ level: "silent" }),
+  printQRInTerminal: false,
+  browser: ["JARVIS", "Chrome", "1.0"]
+});
+
+const PHONE = "2349165534210";
+
+if (!sock.authState.creds.registered) {
+  setTimeout(async () => {
+    const code = await sock.requestPairingCode(PHONE);
+    console.log("PAIRING CODE: " + code);
+  }, 3000);
+}
 
   sock.ev.on("creds.update", saveCreds);
 
